@@ -1,36 +1,37 @@
-// ALGORITMO CON UN CONDICIONAL + CICLO //
 
-let cantidadAlumnos = Number(prompt("Ingrese cantidad de alumnos"))
-for (let i = 0; i < cantidadAlumnos; i++) {
-    const nombre = prompt("Ingresar alumno/a")
-    const cantidadAsistenciasHastaMayo = Number(prompt("Ingrese asistencias acumuladas hasta mayo"))
-    const cantidadAsistenciasJunio = Number(prompt("Ingrese asistencias de junio"))
-    const totalAsistencias = (cantidadAsistenciasHastaMayo + cantidadAsistenciasJunio)
-    if (totalAsistencias === 86) {
-        alert(nombre + " tiene un total de: " + totalAsistencias + " , asistencia perfecta.")
-    } else if (totalAsistencias >= 50){
-        alert(nombre + " tiene un total de: " + totalAsistencias + " , al límite de faltas.")
-    } else
-        alert(nombre + " tiene un total de: " + totalAsistencias + " , quedó libre.")
+
+const alumnos = [
+    { id: 537, nombre: "Juan Perez", asistencias: 55, promedio: 7.5 },
+    { id: 247, nombre: "Ana Lopez", asistencias: 86, promedio: 9 },
+    { id: 122, nombre: "Maria Gomez", asistencias: 55, promedio: 6 },
+    { id: 721, nombre: "Pedro Acosta", asistencias: 30, promedio: 3 },
+    { id: 320, nombre: "Pablo Benitez", asistencias: 80, promedio: 8 },
+    { id: 150, nombre: "Sofia Ramirez", asistencias: 65, promedio: 7 },
+];
+
+function buscarAlumno(ingresoDatos, objetos) {
+    return objetos.filter(alumno => alumno.id === parseInt(ingresoDatos) || alumno.nombre.toLowerCase() === ingresoDatos.toLowerCase()
+    );
 }
 
-// ALGORITMO CON UNA FUNCIÓN //
+let continuar = true;
 
-let legajoAlumno = {
-    nombre: "",
-    asistencias: 0,
-    promedio: 0
-}
+do {
+    let ingresoDatos = prompt("Ingrese ID o nombre completo del alumno/a (o escriba '0' para salir)");
+        
+    if (ingresoDatos === '0') {
+        continuar = false;
+        alert("Búsqueda finalizada.");
+        break;
+    }
 
-function resultadoLegajo(datos) {
-    alert(`Los datos proporcionados son:
-    Nombre: ${datos.nombre}
-    El total de asistencias es: ${datos.asistencias}
-    Su promedio final es: ${datos.promedio}`);
-}
+let resultados = buscarAlumno(ingresoDatos, alumnos);
 
-legajoAlumno.nombre = prompt("Ingrese el nombre del alumno:");
-legajoAlumno.asistencias = parseInt(prompt("Ingrese el total de asistencias del alumno:"));
-legajoAlumno.promedio = parseFloat(prompt("Ingrese el promedio final del alumno:"));
-
-resultadoLegajo(legajoAlumno);
+    if (resultados.length !== 0) {
+        let respuesta = "El estudiante ingresado es:\n" + resultados.map(alumno => `ID: ${alumno.id}, Nombre: ${alumno.nombre}, Asistencias: ${alumno.asistencias}, Promedio: ${alumno.promedio}`);
+        alert(respuesta);
+    } else {
+        alert("No se encontró el alumno/a.");
+    }
+        
+} while (continuar);
