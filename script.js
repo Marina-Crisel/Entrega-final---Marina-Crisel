@@ -18,14 +18,14 @@ let continuar = true;
 
 do {
     let ingresoDatos = prompt("Ingrese ID o nombre completo del alumno/a (o escriba '0' para salir)");
-        
+
     if (ingresoDatos === '0') {
         continuar = false;
         alert("Búsqueda finalizada.");
         break;
     }
 
-let resultados = buscarAlumno(ingresoDatos, alumnos);
+    let resultados = buscarAlumno(ingresoDatos, alumnos);
 
     if (resultados.length !== 0) {
         let respuesta = "El estudiante ingresado es:\n" + resultados.map(alumno => `ID: ${alumno.id}, Nombre: ${alumno.nombre}, Asistencias: ${alumno.asistencias}, Promedio: ${alumno.promedio}`);
@@ -33,5 +33,5 @@ let resultados = buscarAlumno(ingresoDatos, alumnos);
     } else {
         alert("No se encontró el alumno/a.");
     }
-        
+
 } while (continuar);
