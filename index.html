@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto JS</title>
+    <title>Búsqueda de Alumnos</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="./script.js"></script>
+    <h1>Búsqueda de Alumnos</h1>
+    <form id="formulario-busqueda">
+        <label for="ingreso-datos">Ingrese ID o nombre completo del alumno/a:</label>
+        <input type="text" id="ingreso-datos" required>
+        <button type="submit">Buscar</button>
+    </form>
+    <button id="cargar-alumnos">Cargar Alumno</button>
+    <div id="resultado"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>
+
+

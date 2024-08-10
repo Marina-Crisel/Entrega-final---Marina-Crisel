@@ -1,5 +1,3 @@
-
-
 const alumnos = [
     { id: 537, nombre: "Juan Perez", asistencias: 55, promedio: 7.5 },
     { id: 247, nombre: "Ana Lopez", asistencias: 86, promedio: 9 },
@@ -10,28 +8,45 @@ const alumnos = [
 ];
 
 function buscarAlumno(ingresoDatos, objetos) {
-    return objetos.filter(alumno => alumno.id === parseInt(ingresoDatos) || alumno.nombre.toLowerCase() === ingresoDatos.toLowerCase()
+    const id = parseInt(ingresoDatos, 10);
+    return objetos.filter(alumno => 
+        alumno.id === id || alumno.nombre.toLowerCase() === ingresoDatos.toLowerCase()
     );
 }
 
-let continuar = true;
-
-do {
-    let ingresoDatos = prompt("Ingrese ID o nombre completo del alumno/a (o escriba '0' para salir)");
-
-    if (ingresoDatos === '0') {
-        continuar = false;
-        alert("Búsqueda finalizada.");
-        break;
-    }
-
-    let resultados = buscarAlumno(ingresoDatos, alumnos);
-
-    if (resultados.length !== 0) {
-        let respuesta = "El estudiante ingresado es:\n" + resultados.map(alumno => `ID: ${alumno.id}, Nombre: ${alumno.nombre}, Asistencias: ${alumno.asistencias}, Promedio: ${alumno.promedio}`);
-        alert(respuesta);
+function mostrarResultados(resultados) {
+    const resultadoDiv = document.getElementById('resultado');
+    if (resultados.length > 0) {
+        const respuesta = resultados.map(alumno => 
+            `ID: ${alumno.id}, Nombre: ${alumno.nombre}, Asistencias: ${alumno.asistencias}, Promedio: ${alumno.promedio}`
+        ).join('<br>');
+        resultadoDiv.innerHTML = `El/La estudiante ingresado/a es:<br>${respuesta}`;
     } else {
-        alert("No se encontró el alumno/a.");
+        resultadoDiv.innerHTML = "No se encontró el alumno/a.";
     }
+}
 
-} while (continuar);
+function guardarAlumnos() {
+    localStorage.setItem('alumnos', JSON.stringify(alumnos));
+}
+
+function cargarAlumnos() {
+    const alumnosGuardados = localStorage.getItem('alumnos');
+    if (alumnosGuardados) {
+        return JSON.parse(alumnosGuardados);
+    }
+    return [];
+}
+
+document.getElementById('formulario-busqueda').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const ingresoDatos = document.getElementById('ingreso-datos').value.trim();
+    const alumnosCargados = cargarAlumnos();
+    const resultados = buscarAlumno(ingresoDatos, alumnosCargados);
+    mostrarResultados(resultados);
+});
+
+document.getElementById('cargar-alumnos').addEventListener('click', function() {
+    guardarAlumnos();
+    alert('Alumno/a guardado.');
+});
