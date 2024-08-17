@@ -5,6 +5,10 @@ body {
     background-color: #f4f4f4;
     color: #333;
 }
+.wave {
+    height: 250px;
+    width: 100%;
+}
 h1 {
     text-align: center;
     color: #42B9B9;
@@ -63,4 +67,10 @@ h1 {
     background-color: #B2D9D8;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.ilustracion {
+    max-width: 300px;
+    max-height: 300px;
+    margin-left: 1050px;
+    border-radius: 40%;
 }
