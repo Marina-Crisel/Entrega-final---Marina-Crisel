@@ -7,18 +7,35 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <img src="./assets/background-wave.png" alt="wave fondo" class="wave">
+    <img src="./assets/background-wave.png" alt="Fondo con ondas" class="wave">
     <h1>Búsqueda de Alumnos</h1>
+    
     <form id="formulario-busqueda">
         <label for="ingreso-datos">Ingrese ID o nombre completo del alumno/a:</label>
-        <input type="text" id="ingreso-datos" required>
-        <button type="submit">Buscar</button>
+        <input type="text" id="ingreso-datos" name="ingreso-datos" aria-label="Ingrese ID o nombre completo" required>
+        <button type="submit" aria-label="Buscar alumno">Buscar</button>
     </form>
-    <button id="cargar-alumnos">Cargar Alumno</button>
+    
+    <form id="formulario-agregar">
+        <h2>Agregar Nuevo Alumno</h2>
+        <label for="nuevo-id">ID:</label>
+        <input type="number" id="nuevo-id" name="nuevo-id" required>
+        <label for="nuevo-nombre">Nombre Completo:</label>
+        <input type="text" id="nuevo-nombre" name="nuevo-nombre" required>
+        <label for="nuevo-asistencias">Asistencias:</label>
+        <input type="number" id="nuevo-asistencias" name="nuevo-asistencias" required>
+        <label for="nuevo-promedio">Promedio:</label>
+        <input type="number" id="nuevo-promedio" name="nuevo-promedio" step="0.1" required>
+        <button type="submit">Agregar Alumno</button>
+    </form>
+
+    <button id="cargar-alumnos">Cargar Alumnos</button>
     <div id="resultado"></div>
-    <img src="./assets/ilustracion-contacto.png" alt="img fondo" class="ilustracion">
+    <img src="./assets/ilustracion-contacto.png" alt="Ilustración de contacto" class="ilustracion">
+
     <script src="script.js"></script>
 </body>
 </html>
+
 
 
